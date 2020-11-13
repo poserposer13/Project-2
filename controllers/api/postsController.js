@@ -45,7 +45,7 @@ router.put("/:id", (req, res) => {
  * Post - Delete
  */
 router.delete("/:id", (req, res) => {
-  db.Post.destroy({ where: { id: req.params.id } })
+  db.Post.destroy({ where:  id: req.params.id } })
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
 });
