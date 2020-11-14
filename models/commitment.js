@@ -32,7 +32,8 @@ module.exports = function (sequelize, DataTypes) {
   };
   Commitment.associate = function (models) {
     Commitment.hasMany(models.Employee, {
-      onDelete: "cascade",
+      // Should employees be deleted when a commitment gets deleted????
+      // onDelete: "cascade",
     });
   };
 
