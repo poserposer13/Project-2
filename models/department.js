@@ -28,8 +28,8 @@ module.exports = function (sequelize, DataTypes) {
   };
 
   Department.associate = function (models) {
-    // associate Department with User
-    Department.belongsToMany(models.User, {
+    // associate Department with Employee
+    Department.belongsToMany(models.Employee, {
       foreignKey: {
         allowNull: false,
       },
