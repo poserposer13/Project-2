@@ -1,0 +1,18 @@
+{{> navbar user}}
+
+<div class="department-container">
+    <div class="department-row">
+        {{!-- need department name and description --}}
+        {{#each department}}
+        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+            <div class="card-header"><h4>{{department.name}}</h4></div>
+            <div class="card-body">
+                <p class="card-text">{{department.description}}</p>
+                <button type="button" class="btn btn-secondary">View Employees</button>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
