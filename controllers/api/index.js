@@ -10,7 +10,7 @@ const commitmentRoutes = require("./commitmentController");
 // Hook up to the router
 router.use("/posts", postRoutes);
 router.use("/users", userRoutes);
-router.use("/employee", employeeRoute);
+router.use("/employee", employeeRoutes);
 router.use("/departments", departmentRoutes);
 router.use("/pay", payRoutes);
 router.use("/commitment", commitmentRoutes);
