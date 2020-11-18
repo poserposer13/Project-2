@@ -1,0 +1,21 @@
+<table class="table table-sm table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Salary</th>
+      <th scope="col">PTO Accrual Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each commitment}}
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{title}}</td>
+      <td>{{payRate}}</td>
+      <td>{{accrualRate}}</td>
+    </tr>
+    <tr>
+        {{/each}}
+  </tbody>
+</table>
