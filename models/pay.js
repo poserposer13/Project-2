@@ -1,9 +1,23 @@
 module.exports = function (sequelize, DataTypes) {
   const Pay = sequelize.define("Pay", {
     // Giving the Author model a name of type STRING
-    amount: DataTypes.DECIMAL(10, 2),
-    payDate: DataTypes.DATE,
-    ptoAccrual: DataTypes.DECIMAL(10, 2),
+    amount: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+      validate: {
+        isDecimal: true,
+      },
+    },
+    payDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    ptoAccrual: {
+      type: DataTypes.DECIMAL(10, 2),
+      validate: {
+        isDecimal: true,
+      },
+    },
   });
 
   Pay.associate = function (models) {
