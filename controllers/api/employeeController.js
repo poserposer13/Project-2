@@ -4,9 +4,9 @@ const router = require("express").Router();
 router.get("/api/employee/", (req, res) => {
   db.Employee.findAll({
     query: req.query,
-    include: [db.Commitment, db.Pay,]
+    include: [db.Commitment, db.Pay]
       .then((dbEmployee) => res.json(dbEmployee))
-      .catch((err) => res.status(422).json(err))
+      .catch((err) => res.status(422).json(err)),
   });
 });
 
@@ -32,10 +32,9 @@ router.post("/", (req, res) => {
 /*** Employee - Delete*/
 router.delete("/:id", (req, res) => {
   db.Employee.destroy({
-    where: { id: req.params.id }
-  }).then((dbEmployee) => res.json(dbEmployee)).catch((err) => res.status(422).json(err));
+    where: { id: req.params.id },
+  })
+    .then((dbEmployee) => res.json(dbEmployee))
+    .catch((err) => res.status(422).json(err));
 });
 module.exports = router;
-
-
-
