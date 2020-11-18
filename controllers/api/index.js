@@ -3,7 +3,7 @@ const router = require("express").Router();
 const postRoutes = require("./postsController");
 const userRoutes = require("./usersController");
 const payRoutes = require("./payController");
-const commitmentRoutes = require("./commitmentController")
+const commitmentRoutes = require("./commitmentController");
 
 // Hook up to the router
 router.use("/posts", postRoutes);
