@@ -44,3 +44,41 @@
         </div>
         {{/each}}
     </div>
+
+     <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="col-form-label" for="newEmployeeName">Add an Employee</label>
+                <input type="text" class="form-control" placeholder="Employee First Name" id="newEmployeeName">
+            </div>
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Employee Last Name" id="newEmployeeLastName">
+            </div>
+             <div class="form-group">
+                <label class="col-form-label" for="newDeptName">Add a Department</label>
+                <input type="text" class="form-control" placeholder="" id="newDeptName">
+            </div>
+            <button type="button" class="btn btn-info" id="create-new-Employee">Create New Employee</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#create-new-employee").on("click", function(event) {
+        event.preventDefault();
+
+        const newEmployee = {
+            name: $("#newEmployeeName").val().trim(),
+            lastName: $("#newEmployeelastName").val().trim()
+            department: $("#newDeptName").val().trim()
+        };
+
+        $.ajax("/api/employee", {
+            type: "POST",
+            data: newEmployee
+        }).then(function() {
+            console.log("created new employee");
+            location.reload();
+        })
+    });
+</script>
