@@ -15,13 +15,35 @@
         {{/each}}
     </div>
     <div class="row">
-        <div class="form-group">
-            <label class="col-form-label" for="inputDefault">Add a Department</label>
-            <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
-        </div>
-        <div class="form-group">
-            <label for="exampleTextarea">Department description</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        <div class="col">
+            <div class="form-group">
+                <label class="col-form-label" for="newDeptName">Add a Department</label>
+                <input type="text" class="form-control" placeholder="" id="newDeptName">
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea">Department description</label>
+                <textarea class="form-control" id="newDeptDescription" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-info" id="create-new-dept">Info</button>
         </div>
     </div>
 </div>
+
+<script>
+    $("#create-new-dept").on("click", function(event) {
+        event.preventDefault();
+
+        const newDept = {
+            name: $("#newDeptName").val().trim(),
+            description: $("#newDeptDescription").val().trim()
+        };
+
+        $.ajax("/api/departments", {
+            type: "POST",
+            data: newDept
+        }).then(function() {
+            console.log("created new department");
+            location.reload();
+        })
+    });
+</script>
