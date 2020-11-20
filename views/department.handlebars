@@ -1,0 +1,49 @@
+{{> navbar user}}
+
+<div class="department-container">
+    <div class="department-row">
+        {{!-- need department name and description --}}
+        {{#each Department}}
+        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+            <div class="card-header">
+                <h4>{{Department.name}}</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{Department.description}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="col-form-label" for="newDeptName">Add a Department</label>
+                <input type="text" class="form-control" placeholder="" id="newDeptName">
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea">Department description</label>
+                <textarea class="form-control" id="newDeptDescription" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-info" id="create-new-dept">Info</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#create-new-dept").on("click", function(event) {
+        event.preventDefault();
+
+        const newDept = {
+            name: $("#newDeptName").val().trim(),
+            description: $("#newDeptDescription").val().trim()
+        };
+
+        $.ajax("/api/departments", {
+            type: "POST",
+            data: newDept
+        }).then(function() {
+            console.log("created new department");
+            location.reload();
+        })
+    });
+</script>
