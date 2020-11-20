@@ -1,0 +1,50 @@
+{{> navbar user }}
+
+<div class="employee-container">
+    <div class="employee-row">
+        <div class="col-md">
+            <div class="jumbotron">
+                <h4 class="display-6">Employee Description</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="employee-container">
+    <div class="employee-row">
+        {{#each Employee}}
+        <div class="row">
+            <div class="col-md">
+                <h2>Employee Information </h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+                            <td>{{Employee.employeeName}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{Employee.employeelastName}}</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>{{Department.name}}/td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>{{Employee.email}}</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>{{Employee.payRate</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
