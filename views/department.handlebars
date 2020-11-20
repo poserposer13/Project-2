@@ -1,24 +1,25 @@
 {{> navbar user}}
 <br>
-<div class="department-container d-flex flex-row">
-    <div class="department-row">
+<div class="department-container">
+    <div class="department-row d-flex flex-row">
         {{!-- need department name and description --}}
-        <div class="col">
         {{#each Department}}
-        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-            <div class="card-header">
-                <h4>{{name}}</h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{description}}</p>
-                <button type="button" class="btn btn-danger" id="delete-this-dept">Delete</button>
-                <button type="button" class="btn btn-secondary" id="detailed-view">View Details</button>
+        <div class="col">
+            <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                    <h4>{{name}}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{description}}</p>
+                    <button type="button" class="btn btn-danger delete-this-dept" data-id="{{this.id}}">Delete</button>
+                    <button type="button" class="btn btn-secondary" id="detailed-view">View Details</button>
 
+                </div>
             </div>
         </div>
         {{/each}}
-        </div>
-            <div class="col">
+
+        <div class="col">
             <div class="form-group">
                 <label class="col-form-label" for="newDeptName">Add a Department</label>
                 <input type="text" class="form-control" placeholder="" id="newDeptName">
@@ -30,37 +31,38 @@
             <button type="button" class="btn btn-info" id="create-new-dept">Create new department</button>
         </div>
     </div>
-    {{!-- <div class="row">
-    
-    </div> --}}
 </div>
 
 <script>
-    $("#create-new-dept").on("click", function (event) {
-        event.preventDefault();
+    $(document).ready(function () {
 
-        const newDept = {
-            name: $("#newDeptName").val().trim(),
-            description: $("#newDeptDescription").val().trim()
-        };
+        $("#create-new-dept").on("click", function (event) {
+            event.preventDefault();
 
-        $.ajax("/api/departments", {
-            type: "POST",
-            data: newDept
-        }).then(function () {
-            console.log("created new department");
-            location.reload();
+            const newDept = {
+                name: $("#newDeptName").val().trim(),
+                description: $("#newDeptDescription").val().trim()
+            };
+
+            $.ajax("/api/departments", {
+                type: "POST",
+                data: newDept
+            }).then(function () {
+                console.log("created new department");
+                location.reload();
+            });
         });
-    });
 
-    $("#delete-this-dept").on("click", function(event) {
-        event.preventDefault();
+        $(".delete-this-dept").on("click", function (event) {
+            event.preventDefault();
+            const id = $(this).data("id");
 
-        $.ajax("/api/departments/" + id, {
-            type: "DELETE"
-        }).then(function() {
-            console.log("deleted department", id);
-            location.reload();
+            $.ajax("/api/departments/" + id, {
+                type: "DELETE"
+            }).then(function () {
+                console.log("deleted department", id);
+                location.reload();
+            });
         });
     });
 </script>
