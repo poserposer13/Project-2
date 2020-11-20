@@ -83,5 +83,17 @@
                 location.reload();
             })
         });
+
+        $("delete-this-employee").on("click", function (event){
+            event.preventDefault();
+            const id = $(this.data("id"));
+
+            $.ajax("/api/employee/" + id, {
+                type: "DELETE"
+            }).then(function (){
+                console.log("Employee has been deleted", id);
+                location.reload();
+            });
+        });
     });
 </script>
