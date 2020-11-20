@@ -1,21 +1,24 @@
 {{> navbar user}}
-
-<div class="department-container">
+<br>
+<div class="department-container d-flex flex-row">
     <div class="department-row">
         {{!-- need department name and description --}}
+        <div class="col">
         {{#each Department}}
         <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
             <div class="card-header">
-                <h4>{{Department.name}}</h4>
+                <h4>{{name}}</h4>
             </div>
             <div class="card-body">
-                <p class="card-text">{{Department.description}}</p>
+                <p class="card-text">{{description}}</p>
+                <button type="button" class="btn btn-danger" id="delete-this-dept">Delete</button>
+                <button type="button" class="btn btn-secondary" id="detailed-view">View Details</button>
+
             </div>
         </div>
         {{/each}}
-    </div>
-    <div class="row">
-        <div class="col">
+        </div>
+            <div class="col">
             <div class="form-group">
                 <label class="col-form-label" for="newDeptName">Add a Department</label>
                 <input type="text" class="form-control" placeholder="" id="newDeptName">
@@ -24,13 +27,16 @@
                 <label for="exampleTextarea">Department description</label>
                 <textarea class="form-control" id="newDeptDescription" rows="3"></textarea>
             </div>
-            <button type="button" class="btn btn-info" id="create-new-dept">Info</button>
+            <button type="button" class="btn btn-info" id="create-new-dept">Create new department</button>
         </div>
     </div>
+    {{!-- <div class="row">
+    
+    </div> --}}
 </div>
 
 <script>
-    $("#create-new-dept").on("click", function(event) {
+    $("#create-new-dept").on("click", function (event) {
         event.preventDefault();
 
         const newDept = {
@@ -41,9 +47,20 @@
         $.ajax("/api/departments", {
             type: "POST",
             data: newDept
-        }).then(function() {
+        }).then(function () {
             console.log("created new department");
             location.reload();
-        })
+        });
+    });
+
+    $("#delete-this-dept").on("click", function(event) {
+        event.preventDefault();
+
+        $.ajax("/api/departments/" + id, {
+            type: "DELETE"
+        }).then(function() {
+            console.log("deleted department", id);
+            location.reload();
+        });
     });
 </script>

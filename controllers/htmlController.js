@@ -53,6 +53,14 @@ router.get("/forum", isAuthenticated, (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+router.get("/departments", isAuthenticated, (req, res) => {
+  db.Department.findAll({ raw: true })
+    .then((dbModel) => {
+      res.render("department", { user: req.user, Department: dbModel });
+    })
+    .catch((err) => res.status(422).json(err));
+});
+
 /**
  * Generic Error Page
  */
