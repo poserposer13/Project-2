@@ -3,16 +3,25 @@
 <div class="department-container">
     <div class="department-row">
         {{!-- need department name and description --}}
-        {{#each department}}
+        {{#each Department}}
         <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-            <div class="card-header"><h4>{{department.name}}</h4></div>
+            <div class="card-header">
+                <h4>{{Department.name}}</h4>
+            </div>
             <div class="card-body">
-                <p class="card-text">{{department.description}}</p>
-                <button type="button" class="btn btn-secondary">View Employees</button>
-
+                <p class="card-text">{{Department.description}}</p>
             </div>
         </div>
         {{/each}}
     </div>
+    <div class="row">
+        <div class="form-group">
+            <label class="col-form-label" for="inputDefault">Add a Department</label>
+            <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
+        </div>
+        <div class="form-group">
+            <label for="exampleTextarea">Department description</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        </div>
+    </div>
 </div>
-
