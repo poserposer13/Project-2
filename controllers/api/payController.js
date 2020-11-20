@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     include: [db.Employee],
   }).then((dbPay) => {
     res.json(dbPay);
-  });
+  }).catch((err) => res.status(422).json(err));
 });
 
 router.get("/:id", (req, res) => {
@@ -19,13 +19,13 @@ router.get("/:id", (req, res) => {
     include: [db.Employee],
   }).then((dbPay) => {
     res.json(dbPay);
-  });
+  }).catch((err) => res.status(422).json(err));
 });
 
 router.post("/", (req, res) => {
   db.Pay.create(req.body).then((dbPay) => {
     res.json(dbPay);
-  });
+  }).catch((err) => res.status(422).json(err));
 });
 
 // Export routes for server.js to use.
