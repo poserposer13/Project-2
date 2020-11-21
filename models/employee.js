@@ -37,6 +37,12 @@ module.exports = function (sequelize, DataTypes) {
     Employee.hasMany(models.Pay, {
       onDelete: "cascade",
     });
+    Employee.belongsTo(models.Department, {
+      onDelete: "cascade",
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
 
   return Employee;

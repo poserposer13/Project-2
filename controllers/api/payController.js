@@ -6,9 +6,11 @@ const db = require("../../models");
 router.get("/", (req, res) => {
   db.Pay.findAll({
     include: [db.Employee],
-  }).then((dbPay) => {
-    res.json(dbPay);
-  });
+  })
+    .then((dbPay) => {
+      res.json(dbPay);
+    })
+    .catch((err) => res.status(422).json(err));
 });
 
 router.get("/:id", (req, res) => {
@@ -17,15 +19,19 @@ router.get("/:id", (req, res) => {
       id: req.params.id,
     },
     include: [db.Employee],
-  }).then((dbPay) => {
-    res.json(dbPay);
-  });
+  })
+    .then((dbPay) => {
+      res.json(dbPay);
+    })
+    .catch((err) => res.status(422).json(err));
 });
 
 router.post("/", (req, res) => {
-  db.Pay.create(req.body).then((dbPay) => {
-    res.json(dbPay);
-  });
+  db.Pay.create(req.body)
+    .then((dbPay) => {
+      res.json(dbPay);
+    })
+    .catch((err) => res.status(422).json(err));
 });
 
 // Export routes for server.js to use.
