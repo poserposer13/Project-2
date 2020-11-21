@@ -13,13 +13,14 @@ form.login {
 
 footer {
   text-align: center;
-  background-color: black;
+
 }
 
 /* Lines: 20-86 CSS for index/homepage */
 /* Background of site. */
 body{
   background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f7a4df23-770c-42f1-bd54-afc73c1f9a21/d9vr4o-8348d274-6555-4d0c-96ad-464c267279a2.jpg/v1/fill/w_1032,h_774,q_75,strp/soft_gradient_by_dedone.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl0sIm9iaiI6W1t7InBhdGgiOiIvZi9mN2E0ZGYyMy03NzBjLTQyZjEtYmQ1NC1hZmM3M2MxZjlhMjEvZDl2cjRvLTgzNDhkMjc0LTY1NTUtNGQwYy05NmFkLTQ2NGMyNjcyNzlhMi5qcGciLCJ3aWR0aCI6Ijw9MTAzMiIsImhlaWdodCI6Ijw9Nzc0In1dXX0.bDr7hzXYpSF3IaZCwgkQ2eNEkMe7YApaYfMu4ckrxWw");
+  background-size: cover;
 }
 
 
