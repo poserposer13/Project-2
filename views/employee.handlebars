@@ -1,0 +1,100 @@
+{{> navbar user }}
+
+<div class="employee-container">
+    <div class="employee-row">
+        <div class="col-md">
+            <div class="jumbotron">
+                <h4 class="display-6">Employee Description</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="employee-container">
+    <div class="employee-row">
+        {{#each Employee}}
+        <div class="row">
+            <div class="col-md">
+                <h2>Employee Information </h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+                            <td>First Name:{{Employee.employeeName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:{{Employee.employeelastName}}</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>Department Name:{{Department.name}}/td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>Employee email:{{Employee.email}}</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>Employee Pay:{{Employee.payRate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="col-form-label" for="newEmployeeName">Add an Employee</label>
+                <input type="text" class="form-control" placeholder="Employee First Name" id="newEmployeeName">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Employee Last Name" id="newEmployeeLastName">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="newDeptName">Add a Department</label>
+                <input type="text" class="form-control" placeholder="Department" id="newDeptName">
+            </div>
+            <button type="button" class="btn btn-info" id="create-new-Employee">Create New Employee</button>
+             <button type="button" class="btn btn-danger delete-this-Employee" data-id="{{this.id}}">Delete Employee</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#create-new-employee").on("click", function (event) {
+            event.preventDefault();
+
+            const newEmployee = {
+                name: $("#newEmployeeName").val().trim(),
+                lastName: $("#newEmployeelastName").val().trim()
+            department: $("#newDeptName").val().trim()
+            };
+
+            $.ajax("/api/employee", {
+                type: "POST",
+                data: newEmployee
+            }).then(function () {
+                console.log("created new employee");
+                location.reload();
+            })
+        });
+
+        $("delete-this-employee").on("click", function (event){
+            event.preventDefault();
+            const id = $(this.data("id"));
+
+            $.ajax("/api/employee/" + id, {
+                type: "DELETE"
+            }).then(function (){
+                console.log("Employee has been deleted", id);
+                location.reload();
+            });
+        });
+    });
+</script>
