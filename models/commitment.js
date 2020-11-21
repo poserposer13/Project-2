@@ -24,16 +24,14 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Commitment.associate = function (models) {
+    Commitment.hasMany(models.Employee, {
+      // Should employees be deleted when a commitment gets deleted????
+      // onDelete: "cascade",
+    });
     Commitment.belongsToMany(models.Department, {
       foreignKey: {
         allowNull: false,
       },
-    });
-  };
-  Commitment.associate = function (models) {
-    Commitment.hasMany(models.Employee, {
-      // Should employees be deleted when a commitment gets deleted????
-      // onDelete: "cascade",
     });
   };
 
