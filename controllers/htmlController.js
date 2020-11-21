@@ -45,7 +45,7 @@ router.get("/login", (req, res) => {
  * Finances page
  */
 router.get("/finances", isAuthenticated, (req, res) => {
-  db.Employee.findAll({ raw: true }) // Joins User to Posts! And scrapes all the seqeulize stuff off
+  db.Employee.findAll({ raw: true, include: [db.Department] }) // Joins User to Posts! And scrapes all the seqeulize stuff off
     .then((dbModel) => {
       console.log(dbModel);
       res.render("finances", { user: req.user, Employee: dbModel });
@@ -61,6 +61,14 @@ router.get("/forum", isAuthenticated, (req, res) => {
   db.Post.findAll({ raw: true, include: [db.User] }) // Joins User to Posts! And scrapes all the seqeulize stuff off
     .then((dbModel) => {
       res.render("forum", { user: req.user, posts: dbModel });
+    })
+    .catch((err) => res.status(422).json(err));
+});
+
+router.get("/departments", isAuthenticated, (req, res) => {
+  db.Department.findAll({ raw: true })
+    .then((dbModel) => {
+      res.render("department", { user: req.user, Department: dbModel });
     })
     .catch((err) => res.status(422).json(err));
 });
