@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
  * Home Page, again
  */
 router.get("/home", (req, res) => {
-    res.render("index", { user: req.user });
+  res.render("index", { user: req.user });
 });
 
 /**
