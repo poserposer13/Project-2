@@ -8,30 +8,34 @@ router.get("/", (req, res) => {
   }).then((dbEmployee) => {
     res.json(dbEmployee);
   });
+});
 
-  router.get("/:id", (req, res) => {
-    db.Employee.findByPk(req.params.id)
-      .then((dbEmployee) => res.json(dbEmployee))
-      .catch((err) => res.status(422).json(err));
+router.get("/:id", (req, res) => {
+  db.Employee.findByPk(req.params.id, {
+    query: req.query,
+    include: [db.Employee, db.Pay, db.Department],
+  }).then((dbEmployee) => {
+    res.json(dbEmployee);
   });
+});
 
-  // create
-  router.post("/", (req, res) => {
-    db.Employee.create(req.body).then((dbEmployee) => res.json(dbEmployee));
-    });
-  });
+// create
+router.post("/", (req, res) => {
+  db.Employee.create(req.body).then((dbEmployee) => res.json(dbEmployee));
+});
 
-  /*** Employee - Update*/
-  router.put("/:id", (req, res) => {
-    db.Employee.update(req.body, {
-      where: { id: req.params.id },
-    }).then((dbEmployee) => res.json(dbEmployee));
-  });
+/*** Employee - Update*/
+router.put("/:id", (req, res) => {
+  db.Employee.update(req.body, {
+    where: { id: req.params.id },
+  }).then((dbEmployee) => res.json(dbEmployee));
+});
 
-  /*** Employee - Delete*/
-  router.delete("/:id", (req, res) => {
-    db.Employee.destroy({
-      where: { id: req.params.id },
-    }).then((dbEmployee) => res.json(dbEmployee));
-  });
-  module.exports = router;
+/*** Employee - Delete*/
+router.delete("/:id", (req, res) => {
+  db.Employee.destroy({
+    where: { id: req.params.id },
+  }).then((dbEmployee) => res.json(dbEmployee));
+});
+
+module.exports = router;
