@@ -24,19 +24,16 @@
                     </thead>
                     <tbody>
                         <tr class="table-primary">
-                            <td>First Name:{{Employee.employeeName}}</td>
+                            <td>First Name:{{employeeName}}</td>
                         </tr>
                         <tr>
-                            <td>Last Name:{{Employee.employeelastName}}</td>
+                            <td>Last Name:{{employeelastName}}</td>
                         </tr>
-                        <tr class="table-primary">
+                        {{!-- <tr class="table-primary">
                             <td>Department Name:{{Department.name}}/td>
-                        </tr>
+                        </tr> --}}
                         <tr class="table-primary">
-                            <td>Employee email:{{Employee.email}}</td>
-                        </tr>
-                        <tr class="table-primary">
-                            <td>Employee Pay:{{Employee.payRate}}</td>
+                            <td>Employee email:{{email}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -55,11 +52,10 @@
                 <input type="text" class="form-control" placeholder="Employee Last Name" id="newEmployeeLastName">
             </div>
             <div class="form-group">
-                <label class="col-form-label" for="newDeptName">Add a Department</label>
-                <input type="text" class="form-control" placeholder="Department" id="newDeptName">
+                <label class="col-form-label" for="newEmail">Add Email</label>
+                <input type="text" class="form-control" placeholder="Email" id="newEmail">
             </div>
-            <button type="button" class="btn btn-info" id="create-new-Employee">Create New Employee</button>
-             <button type="button" class="btn btn-danger delete-this-Employee" data-id="{{this.id}}">Delete Employee</button>
+            <button type="button" class="btn btn-info" id="create-new-employee">Create New Employee</button>
         </div>
     </div>
 </div>
@@ -71,9 +67,9 @@
             event.preventDefault();
 
             const newEmployee = {
-                name: $("#newEmployeeName").val().trim(),
-                lastName: $("#newEmployeelastName").val().trim()
-            department: $("#newDeptName").val().trim()
+                employeeName: $("#newEmployeeName").val().trim(),
+                employeelastName: $("#newEmployeeLastName").val().trim(),
+                email: $("#newEmail").val().trim()
             };
 
             $.ajax("/api/employee", {
@@ -85,13 +81,13 @@
             })
         });
 
-        $("delete-this-employee").on("click", function (event){
+        $("delete-this-employee").on("click", function (event) {
             event.preventDefault();
             const id = $(this.data("id"));
 
             $.ajax("/api/employee/" + id, {
                 type: "DELETE"
-            }).then(function (){
+            }).then(function () {
                 console.log("Employee has been deleted", id);
                 location.reload();
             });

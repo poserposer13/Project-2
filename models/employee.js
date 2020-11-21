@@ -4,17 +4,11 @@ module.exports = function (sequelize, DataTypes) {
     employeeName: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isEmployeeName: true,
-      },
     },
 
     employeelastName: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isEmployeeLastName: true,
-      },
     },
 
     // The email cannot be null, and must be a proper email before creation
@@ -29,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
     // The password cannot be null
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   });
 
@@ -40,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
     Employee.belongsTo(models.Department, {
       onDelete: "cascade",
       foreignKey: {
-        allowNull: false,
+        allowNull: true,
       },
     });
   };
