@@ -42,6 +42,17 @@ router.get("/login", (req, res) => {
 });
 
 /**
+ * employee page
+ */
+router.get("/employee", (req, res) => {
+  if (req.user) {
+    res.redirect("/");
+  } else {
+    res.render("employee", { user: req.user });
+  }
+});
+
+/**
  * Forum Page -
  * Notice loading our posts, with that include!
  */
