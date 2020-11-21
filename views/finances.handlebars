@@ -1,0 +1,131 @@
+{{> navbar user }}
+
+<div class="container">
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Pay?</th>
+                    <th scope="col">Employee First Name</th>
+                    <th scope="col">Employee Last Name</th>
+                    <th scope="col">Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each Employee}}
+                <tr class="table-primary">
+
+                    <th scope="row"><button type="button" data-employeeID="{{id}}"
+                            class="btn btn-warning employee-paybtn" data-toggle="modal"
+                            data-target="#payModal">PAY!</button></th>
+                    <td>
+                        {{employeeName}}
+                    </td>
+                    <td>
+                        {{employeelastName}}
+                    </td>
+                    <td>
+                        {{'Department.name'}}
+                    </td>
+
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <div class="modal" id="payModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Pay Now?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to pay this employee?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="payConfirm" data-id="">Pay</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="payToast">
+            <div class="toast-header">
+                <strong class="mr-auto">Cha-ching!</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Successful pay day!
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="container">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+
+    let myChart = document.getElementById("myChart").getContext("2d");
+
+    let revenueChart = new Chart(myChart, {
+        type: "bar",
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+            datasets: [{
+                label: "Revenue",
+                data: [156752, 159582, 156894, 169632, 164328],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.6",
+                    "rgba(54, 162, 235, 0.6",
+                    "rgba(75, 192, 192, 0.6",
+                    "rgba(153, 102, 255, 0.6",
+                    "rgba(255, 159, 64, 0.6"
+                ]
+            }],
+        },
+        options: {}
+    });
+
+    $(document).ready(function () {
+        console.log($('.toast'));
+
+        $('.toast').toast({
+            delay: 5000
+        });
+
+        $(".employee-paybtn").on("click", function (event) {
+            event.preventDefault();
+            let id = $(this).attr("data-employeeID");
+            console.log(id);
+            $("#payConfirm").data("id", id)
+        });
+
+        $("#payConfirm").on("click", function (event) {
+            event.preventDefault();
+            let id = $(this).data("id");
+            console.log(id);
+            $('.toast').toast('show')
+            // a function to pay the targeted employee
+            // this then triggers the toast as a confirmation
+            $.ajax({
+                url: "/api/departments",
+                type: "GET",
+                data: {}
+            }).then((res) => {
+
+            })
+
+        })
+    })
+</script>
