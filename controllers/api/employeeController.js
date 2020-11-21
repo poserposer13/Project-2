@@ -21,7 +21,7 @@ router.get("/:id", (req, res) => {
 
 // create
 router.post("/", (req, res) => {
-  db.Employee.create(req.body).then((dbDatabase) => res.json(dbDatabase));
+  db.Employee.create({DepartmentId:1,...req.body}).then((dbDatabase) => res.json(dbDatabase));
 });
 
 /*** Employee - Update*/

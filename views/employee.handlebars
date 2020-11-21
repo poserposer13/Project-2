@@ -55,7 +55,7 @@
                 <label class="col-form-label" for="newEmail">Add Email</label>
                 <input type="text" class="form-control" placeholder="Email" id="newEmail">
             </div>
-            <button type="button" class="btn btn-info" id="create-new-Employee">Create New Employee</button>
+            <button type="button" class="btn btn-info" id="create-new-employee">Create New Employee</button>
         </div>
     </div>
 </div>
@@ -67,8 +67,8 @@
             event.preventDefault();
 
             const newEmployee = {
-                name: $("#newEmployeeName").val().trim(),
-                lastName: $("#newEmployeelastName").val().trim(),
+                employeeName: $("#newEmployeeName").val().trim(),
+                employeelastName: $("#newEmployeeLastName").val().trim(),
                 email: $("#newEmail").val().trim()
             };
 
