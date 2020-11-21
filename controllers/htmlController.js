@@ -45,7 +45,7 @@ router.get("/login", (req, res) => {
  * Finances page
  */
 router.get("/finances", isAuthenticated, (req, res) => {
-  db.Employee.findAll({ raw: true }) // Joins User to Posts! And scrapes all the seqeulize stuff off
+  db.Employee.findAll({ raw: true, include: [db.Department] }) // Joins User to Posts! And scrapes all the seqeulize stuff off
     .then((dbModel) => {
       console.log(dbModel);
       res.render("finances", { user: req.user, Employee: dbModel });

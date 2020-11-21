@@ -19,21 +19,11 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Department.associate = function (models) {
-    // associate Department with Commitment
-    Department.belongsToMany(models.Commitment, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
-
-  Department.associate = function (models) {
     // associate Department with Employee
-    Department.belongsToMany(models.Employee, {
+    Department.hasMany(models.Employee, {
       foreignKey: {
         allowNull: false,
       },
-      through: "EmployeeDepartment",
     });
   };
 
