@@ -43,9 +43,9 @@ router.get("/login", (req, res) => {
 
 /*** employee page*/
 router.get("/employee", isAuthenticated, (req, res) => {
-  db.Post.findAll({ raw: true, include: [db.User] }) // Joins User to Posts! And scrapes all the seqeulize stuff off
+  db.Employee.findAll({ raw: true, include: [db.Department] }) // Joins User to Posts! And scrapes all the seqeulize stuff off
     .then((dbModel) => {
-      res.render("employee", { user: req.user, posts: dbModel });
+      res.render("employee", { user: req.user, Employee: dbModel });
     })
     .catch((err) => res.status(422).json(err));
 });
