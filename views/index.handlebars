@@ -1,65 +1,67 @@
-
 <body>
 
-    <div class="container">
+  <div class="container">
 
-        <!-- Head with title, calander and current time. -->
-        <header class="jumbotron shadow">
-            <h1 class="display-3">Management Dashboard</h1>
-            <div class="date&time" style="display: flex; justify-content: center;">
-                <p id="currentDay" class="lead" style="display: inline-block; margin-right: 20px;"></p>
-                <p id="currentTime" class="lead" style="display: inline-block;"></p>
+    <!-- Head with title, calander and current time. -->
+    <header class="jumbotron shadow">
+      <h1 class="display-4">Management Dashboard</h1>
+      <div class="date&time" style="display: flex; justify-content: center;">
+        <p id="currentDay" class="lead" style="display: inline-block; margin-right: 20px;"></p>
+        <p id="currentTime" class="lead" style="display: inline-block;"></p>
+      </div>
+      <p id="currentDay" class="lead"></p>
+      <p id="currentDay" class="lead"></p>
+    </header>
+
+    <!-- Employee Icon -->
+    <section class="row">
+      <div class="col-md-4">
+        <figure class="overlay">
+          <a href="/employee"><img id="employee" class="icons shadow"
+              src="/icons/employee-working-icon-vector-20994542.jpg" alt="employee management" height="300px"
+              width="100%">
+            <div class="textCenter">
+              <div class="text">Manage Employees</div>
             </div>
-            <p id="currentDay" class="lead"></p>
-            <p id="currentDay" class="lead"></p>
-        </header>
+          </a>
+        </figure>
+      </div>
 
-        <!-- Employee Icon -->
-        <section class="row">
-            <div class="col-md-4">
-                <figure class="overlay">
-                    <a href="/employee"><img id="employee" class="icons"
-                            src="/icons/employee-working-icon-vector-20994542.jpg" alt="employee management"
-                            height="300px" width="100%"></a>
-                    <div class="textCenter">
-                        <div class="text">Manage Employees</div>
-                    </div>
-                </figure>
+      <!-- Revenue Icon -->
+      <div class="col-md-4 overlay">
+        <figure class="overlay">
+          <a href="/finances"><img id="revenue" class="icons shadow" src="/icons/Revenue.jpg" alt="Finances"
+              height="300px" width="100%">
+            <div class="textCenter">
+              <div class="text">Revenue</div>
             </div>
+          </a>
+        </figure>
+      </div>
 
-            <!-- Revenue Icon -->
-            <div class="col-md-4">
-                <figure class="overlay">
-                    <a href="/finances"><img id="revenue" class="icons" src="/icons/Revenue.jpg"
-                            alt="Finances" height="300px" width="100%"></a>
-                    <div class="textCenter">
-                        <div class="text">Revenue</div>
-                    </div>
-                </figure>
+      <!-- Department Icon -->
+      <div class="col-md-4">
+        <figure class="overlay dept-overlay">
+          <a href="/departments"><img id="revenue" class="icons shadow" src="/icons/departments.png" alt="Departments"
+              height="300px" width="100%">
+            <div class="textCenter">
+              <div class="text">Manage Departments</div>
             </div>
+          </a>
+        </figure>
+      </div>
+    </section>
 
-            <!-- Department Icon -->
-            <div class="col-md-4">
-                <figure class="overlay">
-                    <a href="/departments"><img id="revenue" class="icons" src="/icons/department.jpg"
-                            alt="Departments" height="300px" width="100%"></a>
-                    <div class="textCenter">
-                        <div class="text">Manage Departments</div>
-                    </div>
-                </figure>
-            </div>
-        </section>
-
-    </div>
+  </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-    {{!-- Current Date and Time. --}}
-    <script>
-        const todaysDate = new Date(); $('#currentDay').text(todaysDate.toLocaleString('default', { month: 'long' }) + " " + todaysDate.getDate() + ", " + todaysDate.getUTCFullYear()); $('#currentTime').text(todaysDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
-    </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  {{!-- Current Date and Time. --}}
+  <script>
+    const todaysDate = new Date(); $('#currentDay').text(todaysDate.toLocaleString('default', { month: 'long' }) + " " + todaysDate.getDate() + ", " + todaysDate.getUTCFullYear()); $('#currentTime').text(todaysDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
+  </script>
 </body>
-</div 
+</div
