@@ -2,30 +2,7 @@
 <br>
 <div class="container">
     <div class="row d-flex flex-wrap">
-        {{!-- need department name and description --}}
-        {{#each Department}}
-        <div class="col-3">
-            <div class="card text-white bg-info mb-3 shadow" id="style-dept-card" style="max-width: 20rem;">
-                <div class="card-header">
-                    <h4>{{name}}</h4>
-                </div>
-                <br>
-                {{!-- <div class="card-body employees">
-                    <p class="card-text employees">Currently has X Employees</p>
-                </div> --}}
-                <div class="card-body">
-                    <p class="card-text">{{description}}</p>
-                    <button type="button" class="btn btn-danger btn-sm delete-this-dept" data-id="{{this.id}}">Delete
-                        {{name}}</button>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-
-
-    <div class="row d-flex justify-content-center">
-        <div class="col-sm-4">
+        <div class="col-sm-3 input-dept">
             <div class="form-group">
                 <label class="col-form-label" for="newDeptName">Add a Department</label>
                 <input type="text" class="form-control" placeholder="" id="newDeptName">
@@ -34,8 +11,32 @@
                 <label for="exampleTextarea">Department description</label>
                 <textarea class="form-control" id="newDeptDescription" rows="3"></textarea>
             </div>
-            <button type="button" class="btn btn-info" id="create-new-dept">Create new department</button>
+            <button type="button" class="btn btn-info" id="create-new-dept">Add department</button>
         </div>
+        <div class="col-sm-9">
+            <div class="row">
+                {{#each Department}}
+                <div class="col-4">
+                    <div class="card text-white bg-info mb-3 shadow" id="style-dept-card" style="max-width: 20rem;">
+                        <div class="card-header">
+                            <h4>{{name}}</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{description}}</p>
+                            <button type="button" class="btn btn-danger btn-sm delete-this-dept"
+                                data-id="{{this.id}}">Delete
+                                {{name}}</button>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row d-flex justify-content-center">
+
     </div>
 </div>
 
