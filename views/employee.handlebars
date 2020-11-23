@@ -1,5 +1,7 @@
 {{> navbar user }}
-
+<br>
+<div class="container">
+    <div class="row d-flex flex-wrap">
 <div class="employee-container">
     <div class="employee-row">
         <div class="col-md">
@@ -12,38 +14,42 @@
 
 <div class="employee-container">
     <div class="employee-row">
+
         {{#each Employee}}
-        <div class="row">
-            <div class="col-md">
-                <h2>Employee Information </h2>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Profile</th>
-                        </tr>
-                    </thead>
+        <div class="col-3">
+            <div class="card text-white bg-info mb-3 shadow" id="style-dept-card" style="max-width: 20rem;">
+                <div class="card-header">
+                    <h4>{{employeeName}}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"></p>
                     <tbody>
                         <tr class="table-primary">
-                            <td>First Name:{{employeeName}}</td>
+                            <td>First Name: {{employeeName}}</td>
                         </tr>
-                        <tr>
-                            <td>Last Name:{{employeelastName}}</td>
-                        </tr>
-                        {{!-- <tr class="table-primary">
-                            <td>Department Name:{{Department.name}}/td>
-                        </tr> --}}
                         <tr class="table-primary">
-                            <td>Employee email:{{email}}</td>
+                            <br>
+                            <td>Last Name: {{employeelastName}}</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <br>
+                            <td> email: {{email}}</td>
                         </tr>
                     </tbody>
-                </table>
+                    <br>
+                    <div>
+                        <button type="button" class="btn btn-danger btn-sm delete-this-employee"
+                            data-id="{{this.id}}">Delete {{employeeName}}</button>
+                        <br>
+                    </div>
+                </div>
             </div>
         </div>
         {{/each}}
     </div>
 
-    <div class="row">
-        <div class="col">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-4">
             <div class="form-group">
                 <label class="col-form-label" for="newEmployeeName">Add an Employee</label>
                 <input type="text" class="form-control shadow" placeholder="Employee First Name" id="newEmployeeName">
@@ -61,7 +67,6 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
         $("#create-new-employee").on("click", function (event) {
             event.preventDefault();
@@ -78,7 +83,7 @@
             }).then(function () {
                 console.log("created new employee");
                 location.reload();
-            })
+            });
         });
 
         $("delete-this-employee").on("click", function (event) {
