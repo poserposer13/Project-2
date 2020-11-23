@@ -2,6 +2,18 @@
 <br>
 <div class="container">
     <div class="row d-flex flex-wrap">
+<div class="employee-container">
+    <div class="employee-row">
+        <div class="col-md">
+            <div class="jumbotron shadow">
+                <h4 class="display-6">Employee Description</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="employee-container">
+    <div class="employee-row">
 
         {{#each Employee}}
         <div class="col-3">
@@ -40,16 +52,16 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label class="col-form-label" for="newEmployeeName">Add an Employee</label>
-                <input type="text" class="form-control" placeholder="Name" id="newEmployeeName">
+                <input type="text" class="form-control shadow" placeholder="Employee First Name" id="newEmployeeName">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Last Name" id="newEmployeeLastName">
+                <input type="text" class="form-control shadow" placeholder="Employee Last Name" id="newEmployeeLastName">
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="newEmail">Add Email</label>
-                <input type="text" class="form-control" placeholder="e-mail" id="newEmail">
+                <input type="text" class="form-control shadow" placeholder="Email" id="newEmail">
             </div>
-            <button type="button" class="btn btn-info" id="create-new-employee">Create New Employee</button>
+            <button type="button" class="btn btn-info shadow" id="create-new-employee">Create New Employee</button>
         </div>
     </div>
 </div>
