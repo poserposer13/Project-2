@@ -22,7 +22,7 @@ router.get("/:id", (req, res) => {
 // create
 router.post("/", (req, res) => {
   db.Employee.create({
-    DepartmentId: 4,
+    DepartmentId: 1,
     ...req.body,
   }).then((dbDatabase) => res.json(dbDatabase));
 });

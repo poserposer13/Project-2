@@ -34,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
     Employee.belongsTo(models.Department, {
       onDelete: "cascade",
       foreignKey: {
-        allowNull: true,
+        allowNull: false,
       },
     });
   };
