@@ -12,6 +12,46 @@
             </div>
         </div>
     </div>
+
+    <div class="col-sm-9">
+        <div class="row">
+            {{#each Employee}}
+            <div class="col-6">
+                <div class="card text-white bg-info mb-3 shadow" id="style-dept-card" style="max-width: 20rem;">
+                    <div class="card-header">
+                        <h4>{{employeeName}}</h4>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <td>First Name:{{employeeName}}</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <br>
+                                        <td>Last Name:{{employeelastName}}</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <br>
+                                        <td> email:{{email}}</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td>{{'Department.name'}}</td>
+                                    </tr>
+                                </tbody>
+                            </p>
+                            <br>
+                            <button type="button" class="btn btn-danger btn-sm shadow delete-employee"
+                                data-id="{{this.id}}">Remove {{employeeName}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="row d-flex justify-content-center">
+        </div>
+    </div>
+
     <div class="container">
         <div class="row d-flex flex-wrap">
             <div class="col-sm-3 input-dept">
@@ -35,50 +75,14 @@
         </div>
     </div>
     <br>
-    <div class="col-sm-9">
-        <div class="row">
-            {{#each Employee}}
-            <div class="col-4">
-                <div class="card text-white bg-info mb-3 shadow" id="style-dept-card" style="max-width: 20rem;">
-                    <div class="card-header">
-                        <h4>{{employeeName}}</h4>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <tbody>
-                                    <tr class="table-primary">
-                                        <td>First Name:{{employeeName}}</td>
-                                    </tr>
-                                    <tr class="table-primary">
-                                        <br>
-                                        <td>Last Name:{{employeelastName}}</td>
-                                    </tr>
-                                    <tr class="table-primary">
-                                        <br>
-                                        <td> email: {{email}}</td>
-                                    </tr>
-                                </tbody>
-                            </p>
-                            <br>
-                            <button type="button" class="btn btn-danger btn-sm shadow delete-employee"
-                                data-id="{{this.id}}">Remove {{employeeName}}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
-        </div>
-        <div class="row d-flex justify-content-center">
-        </div>
-    </div>
+
 </div>
 
 <script>
     $(document).ready(function () {
-        alert("Alert!");
 
         $("#create-new-employee").on("click", function (event) {
             event.preventDefault();
-            console.log("hello");
 
             const newEmployee = {
                 employeeName: $("#newEmployeeName").val().trim(),
