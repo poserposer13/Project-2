@@ -4,7 +4,7 @@
 
 [For deployed version, click me](https://polar-dawn-89598.herokuapp.com/)
 
-![Image of DEMO application](public/icons/manageer-homepage.png) 
+![Image of DEMO application](https://github.com/poserposer13/Demeter-Project/blob/main/public/icons/manageer-homepage.PNG) 
 
 <br>
 
