@@ -1,73 +1,86 @@
-{{> navbar user }}
+{{> navbar user}}
 <br>
 <div class="container">
     <div class="row d-flex flex-wrap">
-<div class="employee-container">
-    <div class="employee-row">
-        <div class="col-md">
-            <div class="jumbotron shadow">
-                <h4 class="display-6">Employee Description</h4>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="employee-container">
-    <div class="employee-row">
-
-        {{#each Employee}}
-        <div class="col-3">
-            <div class="card text-white bg-info mb-3 shadow" id="style-dept-card" style="max-width: 20rem;">
-                <div class="card-header">
-                    <h4>{{employeeName}}</h4>
-                </div>
-                <div class="card-body">
-                    <p class="card-text"></p>
-                    <tbody>
-                        <tr class="table-primary">
-                            <td>First Name: {{employeeName}}</td>
-                        </tr>
-                        <tr class="table-primary">
-                            <br>
-                            <td>Last Name: {{employeelastName}}</td>
-                        </tr>
-                        <tr class="table-primary">
-                            <br>
-                            <td> email: {{email}}</td>
-                        </tr>
-                    </tbody>
-                    <br>
-                    <div>
-                        <button type="button" class="btn btn-danger btn-sm delete-this-employee"
-                            data-id="{{this.id}}">Delete {{employeeName}}</button>
-                        <br>
+        <div class="employee-container">
+            <div class="employee-row">
+                <div class="col-md">
+                    <div class="jumbotron shadow">
+                        <h4 class="display-6">Employee Description</h4>
                     </div>
                 </div>
             </div>
         </div>
-        {{/each}}
     </div>
 
-    <div class="row d-flex justify-content-center">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label class="col-form-label" for="newEmployeeName">Add an Employee</label>
-                <input type="text" class="form-control shadow" placeholder="Employee First Name" id="newEmployeeName">
+    <div class="col-sm-9">
+        <div class="row">
+            {{#each Employee}}
+            <div class="col-6">
+                <div class="card text-white bg-info mb-3 shadow" id="style-dept-card" style="max-width: 20rem;">
+                    <div class="card-header">
+                        <h4>{{employeeName}}</h4>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <td>First Name:{{employeeName}}</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <br>
+                                        <td>Last Name:{{employeelastName}}</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <br>
+                                        <td> email:{{email}}</td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td>{{'Department.name'}}</td>
+                                    </tr>
+                                </tbody>
+                            </p>
+                            <br>
+                            <button type="button" class="btn btn-danger btn-sm shadow delete-employee"
+                                data-id="{{this.id}}">Remove {{employeeName}}</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control shadow" placeholder="Employee Last Name" id="newEmployeeLastName">
-            </div>
-            <div class="form-group">
-                <label class="col-form-label" for="newEmail">Add Email</label>
-                <input type="text" class="form-control shadow" placeholder="Email" id="newEmail">
-            </div>
-            <button type="button" class="btn btn-info shadow" id="create-new-employee">Create New Employee</button>
+            {{/each}}
+        </div>
+        <div class="row d-flex justify-content-center">
         </div>
     </div>
+
+    <div class="container">
+        <div class="row d-flex flex-wrap">
+            <div class="col-sm-3 input-dept">
+                <div class="form-group">
+                    <label class="col-form-label" for="newEmployeeName">Add an Employee</label>
+                    <input type="text" class="form-control shadow" id="newEmployeeName" placeholder="Employee Name">
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="newEmployeeLastName"></label>
+                    <input type="text" class="form-control shadow" id="newEmployeeLastName"
+                        placeholder="Employee Last Name">
+                </div>
+                <div class="form-group">
+                    <label for="newEmail">Add Email</label>
+                    <input type="text" class="form-control" id="newEmail" placeholder="example@email.com">
+                </div>
+                <br>
+                <button type="button" class="btn btn-info shadow" id="create-new-employee">Create New
+                    Employee</button>
+            </div>
+        </div>
+    </div>
+    <br>
+
 </div>
 
 <script>
     $(document).ready(function () {
+
         $("#create-new-employee").on("click", function (event) {
             event.preventDefault();
 
@@ -76,19 +89,21 @@
                 employeelastName: $("#newEmployeeLastName").val().trim(),
                 email: $("#newEmail").val().trim()
             };
+            console.log(newEmployee);
 
-            $.ajax("/api/employee", {
+            $.ajax("/api/employee/", {
                 type: "POST",
                 data: newEmployee
             }).then(function () {
-                console.log("created new employee");
+                console.log("Employee has been created");
                 location.reload();
             });
         });
 
-        $("delete-this-employee").on("click", function (event) {
+        $(".delete-employee").on("click", function (event) {
             event.preventDefault();
-            const id = $(this.data("id"));
+            const id = $(this).data("id");
+
 
             $.ajax("/api/employee/" + id, {
                 type: "DELETE"
